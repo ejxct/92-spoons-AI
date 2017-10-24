@@ -3,12 +3,11 @@
   group: stable
 
   dist: precise
-  addons:
-    apt:
-      packages:
-         - g++-5
   before_install: 
             - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
+            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo add-apt-repository ppa:ubuntu-toolchain-r/test; fi
+            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo apt-get update; fi
+            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo apt-get install g++-5;
   script:
             g++ -std=c++11 ai.cpp -o ai
   os: 
