@@ -4,6 +4,7 @@
 
   dist: precise
   before_install: 
+            - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; rvm reinstall ruby-head --binary; fi
             - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo add-apt-repository ppa:ubuntu-toolchain-r/test; fi
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo apt-get update; fi
