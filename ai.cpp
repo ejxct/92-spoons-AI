@@ -25,6 +25,7 @@ int main () {
     string line;
     vector<string> first;
     vector<string> second;
+    //TODO: Fix error that occurs when default.92ai is not a thing
     while (getline(conf,line)){
         stringstream split (line);
         string one;
@@ -41,7 +42,8 @@ int main () {
     cout << "Welcome to the 92 Spoons AI interface!"<<endl<<"If you need a tour around, say 'tour'."<<endl;
     while(true){
         string q;
-        cin >> q;
+        //allows for spaces in commands
+        getline(cin,q);
         if (q=="exit"){
             return 0;
         }else{
@@ -66,6 +68,22 @@ int main () {
                     return 1;
                 }
             }else{
+                if (q=="load"){
+                    //not tested
+                    cout<<"What file shall I load?"<<endl;
+                    fstream file2;
+                    file2.open("default.92ai");
+                    string line;
+                    while (getline(file2,line)){
+                        stringstream split (line);
+                        string one;
+                        string two;
+                        getline(split,one,':');
+                        first.push_back(one);
+                        getline(split,two);
+                        second.push_back(two);
+                    }
+                }else{
         if (q=="write"){
             write("default.92ai");
         }else{
@@ -75,6 +93,7 @@ int main () {
                 std::vector<string>::iterator it;
                 it = find (first.begin(), first.end(), q);
                 if (it != first.end()){
+                    //TODO: Fix this conversion error
                     int nPosition = distance (first.begin (), it);
                     cout << second.at(nPosition)<<endl;
                 }else{
@@ -84,6 +103,7 @@ int main () {
         }
     }
     }
+        }
     }
     //write("\ntest","default.92ai");
     return 0;
