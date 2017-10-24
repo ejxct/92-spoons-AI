@@ -73,6 +73,13 @@ int main () {
                     fstream file2;
                     file2.open(file2load);
                     string line;
+                    string header;
+                    //deletes the header and makes sure the file is valid
+                    getline(file2,header);
+                    if (header!="92spoons AI header"){
+                        cout<<"Oh no! A file was loaded that does not have a correct header. Make sure you loaded a 92ai file, and that you didn't make a typo on the header."<<endl;
+                        return 1;
+                    }
                     while (getline(file2,line)){
                         stringstream split (line);
                         string one;
@@ -90,7 +97,6 @@ int main () {
                         fstream file2;
                         file2.open(file2load);
                         string line;
-
                         while(getline(file2,line)){
                             write ("default.92ai",line);
                             //lets hope this works i.e. not tested
@@ -111,7 +117,7 @@ int main () {
                     int nPosition = distance (first.begin (), it);
                     cout << second.at(nPosition)<<endl;
                 }else{
-                    std::cout << "Not found!" <<endl;
+                    std::cout << "Command not found! If you didn't run a command, please report this at https://github/ejxct/92-spoons-AI/issues" <<endl;
                 }
             }
         }
