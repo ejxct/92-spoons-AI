@@ -99,7 +99,6 @@ int main () {
         if (q=="write"){
             string edit;
             getline(cin,edit);
-            cout<<edit;
             write("default.92ai",edit);
         }else{
             if (q=="tour"){
