@@ -6,7 +6,7 @@
   before_install: 
             - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm reinstall ruby-head --binary; fi
             - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
-            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt-get remove g++ gcc; fi
+            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get remove g++ gcc; fi
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; fi
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update; fi
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install g++-5; fi
