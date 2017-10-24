@@ -8,7 +8,7 @@
             - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo add-apt-repository ppa:ubuntu-toolchain-r/test; fi
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo apt-get update; fi
-            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo apt-get install g++-5;
+            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo apt-get install g++-5; fi
   script:
             g++ -std=c++11 ai.cpp -o ai
   os: 
