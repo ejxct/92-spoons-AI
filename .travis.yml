@@ -10,7 +10,7 @@
   before_install: 
             - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
   script:
-            g++ ai.cpp -o ai
+            g++ -std=c++11 ai.cpp -o ai
   os: 
      - osx
      - linux
