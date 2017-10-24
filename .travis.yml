@@ -11,5 +11,5 @@
   script:
             clang++ -std=c++11 ai.cpp -o ai
   os: 
-     #- osx
+     - osx
      - linux
