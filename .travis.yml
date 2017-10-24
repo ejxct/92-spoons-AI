@@ -6,7 +6,7 @@
   before_install: 
             - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm reinstall ruby-head --binary; fi
             - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
-            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get installclang; fi
+            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install clang; fi
 
   script:
             clang++ -std=c++11 ai.cpp -o ai
