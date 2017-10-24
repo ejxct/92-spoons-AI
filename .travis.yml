@@ -1,0 +1,16 @@
+  language: cpp
+
+  group: stable
+
+  dist: precise
+  addons:
+    apt:
+      packages:
+         - gcc
+  before_install: 
+            - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
+  script:
+            g++ ai.cpp -o ai
+  os: 
+     - osx
+     - linux
