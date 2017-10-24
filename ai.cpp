@@ -71,8 +71,10 @@ int main () {
                 if (q=="load"){
                     //not tested
                     cout<<"What file shall I load?"<<endl;
+                    string file2load;
+                    cin>>file2load;
                     fstream file2;
-                    file2.open("default.92ai");
+                    file2.open(file2load);
                     string line;
                     while (getline(file2,line)){
                         stringstream split (line);
