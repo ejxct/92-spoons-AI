@@ -9,10 +9,10 @@
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get remove g++ gcc; fi
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; fi
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update; fi
-            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install g++-5 build-essential; fi
+            - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install g++-5 build-essential clang; fi
 
   script:
-            c++ ai.cpp -o ai
+            clang ai.cpp -o ai
   os: 
      - osx
      - linux
