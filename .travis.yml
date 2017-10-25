@@ -13,3 +13,10 @@
   os: 
      #- osx
      - linux
+  deploy:
+     provider: releases
+     api_key:
+      secure: Fpw5LEsn0JKokChssoGffxEs8p11MX7OHVTa3dDK54BxM40LOawNyqjx13EIP+QVtxlL4XWha0bZG39LM7Eu2wKPtQAXtqCWo684B6+D0iUNHFzg7niEnKlYBwTekqs+ETUFQZRPJL8donu8GDIoTiyQk6c5tjCSpY4sZdGNWCcYtwKz9UYv9ogg2doZh8N7yUUZgc1NmnbRJddO1x4DcsTFwKZb+qBGyetJeyqxebz+lH97T8opZ5opKvPxu10Hh9wqMLf+7sIuZCIlT2tKrqJlpLQ+IGcifz/1FgD4sylQiPZIVVLMuR5q5sbQ0LRNUkS0LBzliaArgrjRnzoWgo40E0IW8mzztgElXvSjFo4iMl1TZxxuFe9/LXloHueQFk0/KX6V3tg0FOwkMi2hDNappkzUIfyPBzbOzZ738g+hZKQqqm13ncFLqAnJYC+BfxvzejO7Qm6GL05OmlnTAea/6TsFZ4om/A5H3Xbr8zfLwfwd3tC/oRqW6DINV97492VKymY0TrvQk6b4gE5UjwyUUs3JDcqmWTlGee47oHt8xz1ddNAJtuA80W1gPFTz971huac+T00AThQ+Qep0XpDMx3zRd9nV6/6a2+VatYsbBAlcPH+gCvn52ehLpHCgwiA8hSHnk1AGpWXrsQ578W9or7bO84vHGCN3X+253LA=
+     file: 'ai'
+     on:
+       repo: tag
