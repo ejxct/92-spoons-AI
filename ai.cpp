@@ -20,9 +20,19 @@ void sleepcp(int milliseconds) // Cross-platform sleep function
 #endif // win32
 }
     void load(int size){
-        float progress = -0.1;
+        float progress = -0.01;
+        int time;
+        if (size<100){
+            time = size*0.5;
+        }
+        if (size<1000&&size>100){
+            time = size*0.05;
+        }
+        if (size>1000){
+            time = size*0.01;
+        }
         while (progress < 1.0) {
-            progress += 0.1;
+            progress += 0.01;
             int barWidth = 70;
             
             cout << "[";
@@ -34,9 +44,9 @@ void sleepcp(int milliseconds) // Cross-platform sleep function
             }
             cout << "] " << int(progress * 100.0) << " %\r";
             cout.flush();
-            sleepcp((size*5));
+            sleepcp(time);
         }
-        cout << endl;
+        cout <<size<< endl;
 
     }
 int write (string filename, string edit){
@@ -58,6 +68,10 @@ int main () {
     end = confsize.tellg();
     thread loadbar (load,(end-begin));
     //create vectors to store commands
+    //clock_t start;
+    //double duration;
+    
+    //start = std::clock();
     fstream conf;
     conf.open("default.92ai");
     string line;
@@ -73,6 +87,9 @@ int main () {
         getline(split,two);
         second.push_back(two);
     }
+    //duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    
+    //std::cout<<"printf: "<< duration <<'\n';
     if (first.at(0)!="92spoons AI header"){
         cout<<"Oh no! A file was loaded that does not have a correct header. Make sure you loaded a 92ai file, and that you didn't make a typo on the header."<<endl;
         exit(1);
