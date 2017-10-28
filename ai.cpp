@@ -35,13 +35,11 @@ void sleepcp(int milliseconds) // Cross-platform sleep function
             cout << "] " << int(progress * 100.0) << " %\r";
             cout.flush();
             sleepcp((size*5));
-            // for demonstration only
-            
         }
         cout << endl;
 
     }
-int write (string filename){
+int write (string filename, string edit){
     //NOTE: THIS WILL APPEND
     fstream file;
     file.open (filename,ios::app);
@@ -142,7 +140,7 @@ int main () {
                         file2.open(file2load);
                         string line;
                         while(getline(file2,line)){
-                            write ("default.92ai",line);
+                            write("default.92ai",line);
                             //lets hope this works i.e. not tested
                         }
                     }else{
