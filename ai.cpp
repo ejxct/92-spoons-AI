@@ -43,9 +43,6 @@ void sleepcp(int milliseconds) // Cross-platform sleep function
     }
 int write (string filename){
     //NOTE: THIS WILL APPEND
-    string edit;
-    cin.ignore();
-    getline(cin,edit);
     fstream file;
     file.open (filename,ios::app);
     file << edit <<endl;
@@ -120,6 +117,13 @@ int main () {
                     fstream file2;
                     file2.open(file2load);
                     string line;
+                    string header;
+                    //deletes the header and makes sure the file is valid
+                    getline(file2,header);
+                    if (header!="92spoons AI header"){
+                        cout<<"Oh no! A file was loaded that does not have a correct header. Make sure you loaded a 92ai file, and that you didn't make a typo on the header."<<endl;
+                        return 1;
+                    }
                     while (getline(file2,line)){
                         stringstream split (line);
                         string one;
@@ -130,8 +134,22 @@ int main () {
                         second.push_back(two);
                     }
                 }else{
+                    if (q=="import"){
+                        cout<<"What file shall I import?"<<endl;
+                        string file2load;
+                        cin>>file2load;
+                        fstream file2;
+                        file2.open(file2load);
+                        string line;
+                        while(getline(file2,line)){
+                            write ("default.92ai",line);
+                            //lets hope this works i.e. not tested
+                        }
+                    }else{
         if (q=="write"){
-            write("default.92ai");
+            string edit;
+            getline(cin,edit);
+            write("default.92ai",edit);
         }else{
             if (q=="tour"){
                 cout<<"Hi!"<<endl<<"You can type something and this AI will respond!"<<endl<<"If you want to make a new command, type write."<<endl<<"Then type what you expect a user to type, like llama."<<endl<<"Then, type a colon."<<endl<<"Finally, tell me what I should say to respond."<<endl<<"For example, llama:No, llama, no!"<<endl;
@@ -149,6 +167,7 @@ int main () {
         }
     }
     }
+        }
         }
     }
     //write("\ntest","default.92ai");
