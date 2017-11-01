@@ -12,16 +12,6 @@
 #include <unistd.h>
 #endif // win32
 using namespace std;
-#ifndef UPDATE_H
-#define UPDATE_H
-#include <iostream>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <sstream>
-using namespace std;
-#endif
-
 void sleepcp(int milliseconds){
 #ifdef WIN32
     Sleep(milliseconds);
