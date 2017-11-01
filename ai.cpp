@@ -1,28 +1,38 @@
-// basic file operations
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <sstream>
 #include <algorithm>
 #include <thread>
+#include <unistd.h>
+#include "files.h"
 #ifdef WIN32
 #include <windows.h>
 #else
 #include <unistd.h>
 #endif // win32
 using namespace std;
-void sleepcp(int milliseconds) // Cross-platform sleep function
-{
+#ifndef UPDATE_H
+#define UPDATE_H
+#include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
+using namespace std;
+#endif
+
+void sleepcp(int milliseconds){
 #ifdef WIN32
     Sleep(milliseconds);
 #else
     usleep(milliseconds * 1000);
 #endif // win32
 }
-    void load(int size){
+    void load(/*int size*/){
         float progress = -0.01;
-        int time;
-        if (size<100){
+        int time = 100;
+        /*if (size<100){
             time = size*0.5;
         }
         if (size<1000&&size>100){
@@ -30,7 +40,7 @@ void sleepcp(int milliseconds) // Cross-platform sleep function
         }
         if (size>1000){
             time = size*0.01;
-        }
+        }*/
         while (progress < 1.0) {
             progress += 0.01;
             int barWidth = 70;
@@ -46,54 +56,16 @@ void sleepcp(int milliseconds) // Cross-platform sleep function
             cout.flush();
             sleepcp(time);
         }
-        cout <<size<< endl;
+        cout << endl;
 
     }
-int write (string filename, string edit){
-    //NOTE: THIS WILL APPEND
-    fstream file;
-    file.open (filename,ios::app);
-    file << edit <<endl;
-    file.close();
-    cout<<"Run reload to add your new command"<<endl;
-    return 0;
-}
 int main () {
     //load default conf
-    fstream confsize;
-    confsize.open("default.92ai");
-    streampos begin,end;
-    begin = confsize.tellg();
-    confsize.seekg (0, ios::end);
-    end = confsize.tellg();
-    thread loadbar (load,(end-begin));
-    //create vectors to store commands
-    //clock_t start;
-    //double duration;
-    
-    //start = std::clock();
-    fstream conf;
-    conf.open("default.92ai");
-    string line;
-    vector<string> first;
-    vector<string> second;
-    //TODO: Fix error that occurs when default.92ai is not a thing
-    while (getline(conf,line)){
-        stringstream split (line);
-        string one;
-        string two;
-        getline(split,one,':');
-        first.push_back(one);
-        getline(split,two);
-        second.push_back(two);
-    }
-    //duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
-    
-    //std::cout<<"printf: "<< duration <<'\n';
-    if (first.at(0)!="92spoons AI header"){
-        cout<<"Oh no! A file was loaded that does not have a correct header. Make sure you loaded a 92ai file, and that you didn't make a typo on the header."<<endl;
-        exit(1);
-    }
+    files conf;
+    conf.fileset("default.92ai");
+    //conf.checksize();
+    thread loadbar (load/*,conf.size*/);
+    conf.read();
     loadbar.join();
     cout << "Welcome to the 92 Spoons AI interface!"<<endl<<"If you need a tour around, say 'tour'."<<endl;
     while(true){
@@ -104,51 +76,18 @@ int main () {
             return 0;
         }else{
             if (q=="reload"){
-                conf.close();
-                fstream conf;
-                conf.open("default.92ai");
-                string line;
-                first.clear();
-                second.clear();
-                while (getline(conf,line)){
-                    stringstream split (line);
-                    string one;
-                    string two;
-                    getline(split,one,':');
-                    first.push_back(one);
-                    getline(split,two);
-                    second.push_back(two);
+                conf.reload();
                 }
-                if (first.at(0)!="92spoons AI header"){
-                    cout<<"Oh no! A file was loaded that does not have a correct header. Make sure you loaded a 92ai file, and that you didn't make a typo on the header."<<endl;
-                    return 1;
-                }
-            }else{
+        else{
                 if (q=="load"){
                     //not tested
                     cout<<"What file shall I load?"<<endl;
                     string file2load;
                     cin>>file2load;
-                    fstream file2;
-                    file2.open(file2load);
-                    string line;
-                    string header;
-                    //deletes the header and makes sure the file is valid
-                    getline(file2,header);
-                    if (header!="92spoons AI header"){
-                        cout<<"Oh no! A file was loaded that does not have a correct header. Make sure you loaded a 92ai file, and that you didn't make a typo on the header."<<endl;
-                        return 1;
+                    files file2;
+                    file2.fileset(file2load);
                     }
-                    while (getline(file2,line)){
-                        stringstream split (line);
-                        string one;
-                        string two;
-                        getline(split,one,':');
-                        first.push_back(one);
-                        getline(split,two);
-                        second.push_back(two);
-                    }
-                }else{
+            else{
                     if (q=="import"){
                         cout<<"What file shall I import?"<<endl;
                         string file2load;
@@ -157,34 +96,33 @@ int main () {
                         file2.open(file2load);
                         string line;
                         while(getline(file2,line)){
-                            write("default.92ai",line);
+                            conf.add(line);
                             //lets hope this works i.e. not tested
                         }
                     }else{
         if (q=="write"){
             string edit;
             getline(cin,edit);
-            write("default.92ai",edit);
+            conf.add(edit);
         }else{
             if (q=="tour"){
                 cout<<"Hi!"<<endl<<"You can type something and this AI will respond!"<<endl<<"If you want to make a new command, type write."<<endl<<"Then type what you expect a user to type, like llama."<<endl<<"Then, type a colon."<<endl<<"Finally, tell me what I should say to respond."<<endl<<"For example, llama:No, llama, no!"<<endl;
             }else{
                 vector<string>::iterator it;
-                it = find (first.begin(), first.end(), q);
-                if (it != first.end()){
+                it = find (conf.first.begin(), conf.first.end(), q);
+                if (it != conf.first.end()){
                     //TODO: Fix this conversion error
-                    int nPosition = distance (first.begin (), it);
-                    cout << second.at(nPosition)<<endl;
+                    int nPosition = distance (conf.first.begin (), it);
+                    cout << conf.second.at(nPosition)<<endl;
                 }else{
                     cout << "Not found!" <<endl;
-                }
             }
         }
     }
     }
         }
         }
+}
     }
-    //write("\ntest","default.92ai");
-    return 0;
+        return 0;
 }
