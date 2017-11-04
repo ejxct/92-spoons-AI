@@ -27,7 +27,7 @@ public:
 };
 int files::checksize(){
     fstream filesize;
-    filesize.open(fileset2,ios::binary);
+    filesize.open(filename,ios::binary);
     streampos begin,end;
     begin = filesize.tellg();
     filesize.seekg (0, ios::end);
@@ -109,7 +109,7 @@ void files::reload(){
 }
 void files::load(string loadname){
     files file2;
-    file2.fileset(loadname);
+    file2.filename=loadname;
     string line;
     string header;
     getline(file2.file,header);
