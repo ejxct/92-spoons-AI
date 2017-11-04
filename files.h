@@ -7,13 +7,13 @@
 #include <sstream>
 using namespace std;
 class files{
-    string filename,edit,fileset2;
+    string edit;
 public:
     int size;
     vector<string> first;
     vector<string> second;
     fstream file7,file;
-    void fileset(string filename);
+    string filename;
     void add(string edit);
     void keepline(string edit);
     void fileopen();
@@ -25,10 +25,6 @@ public:
     int checksize();
     void load(string loadname);
 };
-void files::fileset(string filename){
-    string *pfileset2 = &fileset2;
-    *pfileset2 = filename;
-}
 int files::checksize(){
     fstream filesize;
     filesize.open(fileset2,ios::binary);
@@ -56,18 +52,18 @@ void files::end(){
 void files::fileopen(){
     fstream *pfile;
     pfile = &file;
-    (*pfile).open(fileset2);
+    (*pfile).open(filename);
 }
 void files::add(string edit){ //for experienced users
     fstream filewrite;
-    filewrite.open(fileset2);
+    filewrite.open(filename);
     filewrite.seekg(0,ios::end);
     filewrite << edit <<endl;
     filewrite.close();
 }
 void files::keepline (string edit){
     fstream filewrite;
-    filewrite.open(fileset2);
+    filewrite.open(filename);
     filewrite << edit;
     filewrite.close();
 }
