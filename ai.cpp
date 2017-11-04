@@ -52,7 +52,7 @@ void sleepcp(int milliseconds){
 int main () {
     //load default conf
     files conf;
-    conf.fileset("default.92ai");
+    conf.filename="default.92ai";
     //conf.checksize();
     thread loadbar (load/*,conf.size*/);
     conf.read();
