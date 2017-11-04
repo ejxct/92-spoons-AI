@@ -75,7 +75,7 @@ int main () {
                     string file2load;
                     cin>>file2load;
                     files file2;
-                    file2.fileset(file2load);
+                    file2.filename=file2load;
                     }
             else{
                     if (q=="import"){
