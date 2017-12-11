@@ -13,7 +13,7 @@ pipeline {
     }
     stage('GitHub Releases') {
       steps {
-        sh 'mkdir release-mac && clang++ -std=c++11 ai.cpp -o release-mac/ai && zip -r release-mac.zip release-mac'
+        sh '/Users/grant/go/bin/github-release release --draft -u ejxct -r 92-spoons-ai -t $BUILD_NUMBER -s cf0156482bf05038a2fdc811c5d0808e551f8da8 && /Users/grant/go/bin/github-release upload -u ejxct -r 92-spoons-ai -n mac-release.zip --file release-mac.zip -s cf0156482bf05038a2fdc811c5d0808e551f8da8 -t $BUILD_NUMBER'
       }
     }
     stage('After-build') {
