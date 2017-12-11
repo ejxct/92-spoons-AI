@@ -27,7 +27,7 @@ pipeline {
     }
     stage('After-build') {
       steps {
-        archiveArtifacts '*'
+        archiveArtifacts(artifacts: '*', fingerprint: true)
         emailext(subject: '$DEFAULT_SUBJECT', body: '$DEFAULT_CONTENT', attachLog: true, replyTo: '$DEFAULT_REPLYTO', to: '$DEFAULT_RECIPIENTS')
         cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true, cleanupMatrixParent: true)
       }
