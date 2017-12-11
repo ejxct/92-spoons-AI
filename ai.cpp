@@ -8,6 +8,7 @@
 #include "files.h"
 #ifdef WIN32
 #include <windows.h>
+#include <mingw.thread.h>
 #else
 #include <unistd.h>
 #endif // win32
@@ -102,7 +103,7 @@ int main () {
                 it = find (conf.first.begin(), conf.first.end(), q);
                 if (it != conf.first.end()){
                     //TODO: Fix this conversion error
-                    int nPosition = distance (conf.first.begin (), it);
+                    long nPosition = distance (conf.first.begin (), it);
                     cout << conf.second.at(nPosition)<<endl;
                 }else{
                     cout << "Not found!" <<endl;
