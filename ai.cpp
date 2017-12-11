@@ -6,9 +6,11 @@
 #include <thread>
 #include <unistd.h>
 #include "files.h"
+#ifdef __MINGW32__
+#include <mingw.thread.h>
+#endif
 #ifdef WIN32
 #include <windows.h>
-#include <mingw.thread.h>
 #else
 #include <unistd.h>
 #endif // win32
