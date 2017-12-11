@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Windows Build') {
           steps {
-            sh 'mkdir release-win && /usr/local/gcc-4.8.0-qt-4.8.4-for-mingw32/win32-gcc/bin/i586-mingw32-g++ -std=c++11 ai.cpp -o release-win/ai && zip -r release-win.zip release-win'
+            sh 'mkdir release-win && /usr/local/gcc-4.8.0-qt-4.8.4-for-mingw32/win32-gcc/bin/i586-mingw32-g++ -std=c++11 ai.cpp -o release-win/ai -B /mingw-include/ && zip -r release-win.zip release-win'
           }
         }
       }
