@@ -6,7 +6,7 @@ pipeline {
         git(url: 'https://github.com/ejxct/92-spoons-ai/', branch: 'master')
       }
     }
-    stage('Mac Build') {
+    stage('Build') {
       parallel {
         stage('Mac Build') {
           steps {
