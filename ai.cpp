@@ -55,7 +55,7 @@ void sleepcp(int milliseconds){
 int main () {
     //load default conf
     files conf;
-    conf.fileset("default.92ai");
+    conf.filename="default.92ai";
     //conf.checksize();
     thread loadbar (load/*,conf.size*/);
     conf.read();
@@ -78,7 +78,7 @@ int main () {
                     string file2load;
                     cin>>file2load;
                     files file2;
-                    file2.fileset(file2load);
+                    file2.filename=file2load;
                     }
             else{
                     if (q=="import"){
