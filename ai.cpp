@@ -71,7 +71,6 @@ int main () {
                 }
         else{
                 if (q=="load"){
-                    //not tested
                     std::cout<<"What file shall I load?"<<std::endl;
                     std::string file2load;
                     std::cin>>file2load;
@@ -88,7 +87,6 @@ int main () {
                         std::string line;
                         while(std::getline(file2,line)){
                             conf.add(line);
-                            //lets hope this works i.e. not tested
                         }
                     }else{
         if (q=="write"){
