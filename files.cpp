@@ -1,4 +1,5 @@
 #include "files.h"
+#include <cstdlib>
 
 int files::checksize(){
     std::fstream infile{filename, std::ios::ate | std::ios::binary};
