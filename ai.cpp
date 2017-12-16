@@ -34,7 +34,7 @@ void sleepcp(unsigned milliseconds){
         }*/
         while (progress < 1.0) {
             progress += 0.01;
-            int barWidth = 70;
+            unsigned barWidth = 70;
             
             std::cout << '[';
             int pos = barWidth * progress;
