@@ -3,6 +3,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <cstdlib>
 #include <thread>
 #include "files.h"
 #ifdef __MINGW32__
