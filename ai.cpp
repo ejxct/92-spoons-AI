@@ -13,7 +13,7 @@
 #else
 #include <unistd.h>
 #endif // win32
-void sleepcp(int milliseconds){
+void sleepcp(unsigned milliseconds){
 #ifdef WIN32
     Sleep(milliseconds);
 #else
