@@ -22,7 +22,7 @@ pipeline {
     }
     stage('GitHub Releases') {
       steps {
-        sh '/Users/grant/go/bin/github-release release --draft -u ejxct -r 92-spoons-ai -t $BUILD_NUMBER -s "a8230c92850b0cad68a""dcfd146ab0201d307d4c3" && /Users/grant/go/bin/github-release upload -u ejxct -r 92-spoons-ai -n mac-release.zip --file release-mac.zip -s "a8230c92850b0cad68adcf""d146ab0201d307d4c3" -t $BUILD_NUMBER && /Users/grant/go/bin/github-release upload -u ejxct -r 92-spoons-ai -n win-release.zip --file release-win.zip -s "a8230c92850b0cad68adcf""d146ab0201d307d4c3" -t $BUILD_NUMBER'
+        sh '/Users/grant/go/bin/github-release release --draft -u ejxct -r 92-spoons-ai -t $BUILD_NUMBER -s "a8230c92850b0cad68a""dcfd146ab0201d307d4c3" && /Users/grant/go/bin/github-release upload -u ejxct -r 92-spoons-ai -n mac-release.zip --file release-mac.zip -s "a8230c92850b0cad68adcf""d146ab0201d307d4c3" -t $BUILD_NUMBER && /Users/grant/go/bin/github-release upload -u ejxct -r 92-spoons-ai -n win-release.zip --file release-win.zip -s "a8230c92850b0cad68adcf""d146ab0201d307d4c3" -t $BUILD_NUMBER || true'
       }
     }
     stage('After-build') {
