@@ -58,7 +58,7 @@ int main () {
     thread loadbar (load/*,conf.size*/);
     conf.read();
     loadbar.join();
-    std::cout << "Welcome to the 92 Spoons AI interface!"<<std::endl<<"If you need a tour around, say 'tour'."<<std::endl;
+    std::cout << "Welcome to the 92 Spoons AI interface!\nIf you need a tour around, say 'tour'."<<std::endl;
     while(true){
         std::string q;
         //allows for spaces in commands
@@ -95,7 +95,7 @@ int main () {
             conf.add(edit);
         }else{
             if (q=="tour"){
-                std::cout<<"Hi!"<<std::endl<<"You can type something and this AI will respond!"<<std::endl<<"If you want to make a new command, type write."<<std::endl<<"Then type what you expect a user to type, like llama."<<std::endl<<"Then, type a colon."<<std::endl<<"Finally, tell me what I should say to respond."<<std::endl<<"For example, llama:No, llama, no!"<<std::endl;
+                std::cout<<"Hi!\nYou can type something and this AI will respond!\nIf you want to make a new command, type write.\nThen type what you expect a user to type, like llama.\nThen, type a colon.\nFinally, tell me what I should say to respond.\nFor example, llama:No, llama, no!"<<std::endl;
             }else{
                 vector<string>::iterator it;
                 it = find (conf.first.begin(), conf.first.end(), q);
