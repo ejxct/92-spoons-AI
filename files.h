@@ -26,18 +26,8 @@ public:
     void load(string loadname);
 };
 int files::checksize(){
-    fstream filesize;
-    filesize.open(filename,ios::binary);
-    streampos begin,end;
-    begin = filesize.tellg();
-    filesize.seekg (0, ios::end);
-    end = filesize.tellg();
-    int size = end-begin;
-    //if you hate warnings
-    /**psize++;
-    *psize--;*/
-    files::start();
-    return size;
+    std::fstream infile{filename, std::ios::ate | std::ios::binary};
+    return infile.tellg();
 }
 void files::start(){
     fstream *pfile;
