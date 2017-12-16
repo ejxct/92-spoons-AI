@@ -13,7 +13,7 @@ public:
     vector<string> first;
     vector<string> second;
     fstream file;
-    string filename;
+    std::string filename;
     void add(string edit);
     void keepline(string edit);
     void fileopen();
