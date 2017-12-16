@@ -14,7 +14,6 @@
 #else
 #include <unistd.h>
 #endif // win32
-using namespace std;
 void sleepcp(int milliseconds){
 #ifdef WIN32
     Sleep(milliseconds);
@@ -60,11 +59,11 @@ int main () {
     thread loadbar (load/*,conf.size*/);
     conf.read();
     loadbar.join();
-    cout << "Welcome to the 92 Spoons AI interface!"<<endl<<"If you need a tour around, say 'tour'."<<endl;
+    std::cout << "Welcome to the 92 Spoons AI interface!"<<std::endl<<"If you need a tour around, say 'tour'."<<std::endl;
     while(true){
-        string q;
+        std::string q;
         //allows for spaces in commands
-        getline(cin,q);
+        std::getline(std::cin,q);
         if (q=="exit"){
             return 0;
         }else{
@@ -74,41 +73,41 @@ int main () {
         else{
                 if (q=="load"){
                     //not tested
-                    cout<<"What file shall I load?"<<endl;
-                    string file2load;
-                    cin>>file2load;
+                    std::cout<<"What file shall I load?"<<std::endl;
+                    std::string file2load;
+                    std::cin>>file2load;
                     files file2;
                     file2.filename=file2load;
                     }
             else{
                     if (q=="import"){
-                        cout<<"What file shall I import?"<<endl;
-                        string file2load;
-                        cin>>file2load;
-                        fstream file2;
+                        std::cout<<"What file shall I import?"<<std::endl;
+                        std::string file2load;
+                        std::cin>>file2load;
+                        std::fstream file2;
                         file2.open(file2load);
-                        string line;
-                        while(getline(file2,line)){
+                        std::string line;
+                        while(std::getline(file2,line)){
                             conf.add(line);
                             //lets hope this works i.e. not tested
                         }
                     }else{
         if (q=="write"){
-            string edit;
-            getline(cin,edit);
+            std::string edit;
+            std::getline(std::cin,edit);
             conf.add(edit);
         }else{
             if (q=="tour"){
-                cout<<"Hi!"<<endl<<"You can type something and this AI will respond!"<<endl<<"If you want to make a new command, type write."<<endl<<"Then type what you expect a user to type, like llama."<<endl<<"Then, type a colon."<<endl<<"Finally, tell me what I should say to respond."<<endl<<"For example, llama:No, llama, no!"<<endl;
+                std::cout<<"Hi!"<<std::endl<<"You can type something and this AI will respond!"<<std::endl<<"If you want to make a new command, type write."<<std::endl<<"Then type what you expect a user to type, like llama."<<std::endl<<"Then, type a colon."<<std::endl<<"Finally, tell me what I should say to respond."<<std::endl<<"For example, llama:No, llama, no!"<<std::endl;
             }else{
                 vector<string>::iterator it;
                 it = find (conf.first.begin(), conf.first.end(), q);
                 if (it != conf.first.end()){
                     //TODO: Fix this conversion error
                     long nPosition = distance (conf.first.begin (), it);
-                    cout << conf.second.at(nPosition)<<endl;
+                    std::cout << conf.second.at(nPosition)<<std::endl;
                 }else{
-                    cout << "Not found!" <<endl;
+                    std::cout << "Not found!" <<std::endl;
             }
         }
     }
