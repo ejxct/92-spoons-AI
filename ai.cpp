@@ -7,6 +7,7 @@
 #include "files.h"
 #ifdef __MINGW32__
 #include <mingw.thread.h>
+#include <unistd.h>
 #endif
 #ifdef WIN32
 #include <windows.h>
