@@ -4,7 +4,6 @@
 #include <sstream>
 #include <algorithm>
 #include <thread>
-#include <unistd.h>
 #include "files.h"
 #ifdef __MINGW32__
 #include <mingw.thread.h>
