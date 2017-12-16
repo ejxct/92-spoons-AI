@@ -32,17 +32,17 @@ int files::checksize(){
 void files::start(){
     fstream *pfile;
     pfile = &file;
-    (*pfile).seekg (0, ios::beg);
+    pfile->seekg (0, ios::beg);
 }
 void files::end(){
     fstream *pfile;
     pfile = &file;
-    (*pfile).seekg (0, ios::end);
+    pfile->seekg (0, ios::end);
 }
 void files::fileopen(){
     fstream *pfile;
     pfile = &file;
-    (*pfile).open(filename);
+    pfile->open(filename);
 }
 void files::add(string edit){ //for experienced users
     fstream filewrite;
@@ -72,9 +72,9 @@ void files::read(){
         string one;
         string two;
         getline(split,one,':');
-        (*pfirst).push_back(one);
+        pfirst->push_back(one);
         getline(split,two);
-        (*psecond).push_back(two);
+        psecond->push_back(two);
     }
     if (first.at(0)!="92spoons AI header"){
         cout<<"Oh no! A file was loaded that does not have a correct header. Make sure you loaded a 92ai file, and that you didn't make a typo on the header."<<endl;
@@ -85,7 +85,7 @@ void files::read(){
 void files::close(){
     fstream *pfile;
     pfile = &file;
-    (*pfile).close();
+    pfile->close();
 }
 void files::reload(){
     vector<string> *pfirst;
@@ -93,8 +93,8 @@ void files::reload(){
     vector<string> *psecond;
     psecond = &second;
     files::close();
-    (*pfirst).clear();
-    (*psecond).clear();
+    pfirst->clear();
+    psecond->clear();
     files::read();
 }
 void files::load(string loadname){

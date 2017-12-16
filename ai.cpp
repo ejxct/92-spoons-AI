@@ -47,7 +47,7 @@ void sleepcp(unsigned milliseconds){
             std::cout.flush();
             sleepcp(time);
         }
-        std::cout << endl;
+        std::cout << std::endl;
 
     }
 int main () {
