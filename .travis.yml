@@ -12,4 +12,4 @@
             clang++ -std=c++11 ai.cpp -o ai
   os: 
      - osx
-     - linux
+     #- linux todo: fix later
