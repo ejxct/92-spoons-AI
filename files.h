@@ -12,7 +12,7 @@ public:
     int size;
     vector<string> first;
     vector<string> second;
-    fstream file7,file;
+    fstream file;
     string filename;
     void add(string edit);
     void keepline(string edit);
