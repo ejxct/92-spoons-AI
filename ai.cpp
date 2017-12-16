@@ -58,7 +58,7 @@ int main () {
     thread loadbar (load/*,conf.size*/);
     conf.read();
     loadbar.join();
-    std::cout << "Welcome to the 92 Spoons AI interface!\nIf you need a tour around, say 'tour'."<<std::endl;
+    std::cout << "Welcome to the 92 Spoons AI interface!\nIf you need a tour around, say 'tour'.\n";
     while(true){
         std::string q;
         //allows for spaces in commands
@@ -71,7 +71,7 @@ int main () {
                 }
         else{
                 if (q=="load"){
-                    std::cout<<"What file shall I load?"<<std::endl;
+                    std::cout<<"What file shall I load?\n";
                     std::string file2load;
                     std::cin>>file2load;
                     files file2;
@@ -79,7 +79,7 @@ int main () {
                     }
             else{
                     if (q=="import"){
-                        std::cout<<"What file shall I import?"<<std::endl;
+                        std::cout<<"What file shall I import?\n";
                         std::string file2load;
                         std::cin>>file2load;
                         std::fstream file2;
@@ -95,16 +95,16 @@ int main () {
             conf.add(edit);
         }else{
             if (q=="tour"){
-                std::cout<<"Hi!\nYou can type something and this AI will respond!\nIf you want to make a new command, type write.\nThen type what you expect a user to type, like llama.\nThen, type a colon.\nFinally, tell me what I should say to respond.\nFor example, llama:No, llama, no!"<<std::endl;
+                std::cout<<"Hi!\nYou can type something and this AI will respond!\nIf you want to make a new command, type write.\nThen type what you expect a user to type, like llama.\nThen, type a colon.\nFinally, tell me what I should say to respond.\nFor example, llama:No, llama, no!\n";
             }else{
                 vector<string>::iterator it;
                 it = find (conf.first.begin(), conf.first.end(), q);
                 if (it != conf.first.end()){
                     //TODO: Fix this conversion error
-                    long nPosition = distance (conf.first.begin (), it);
-                    std::cout << conf.second.at(nPosition)<<std::endl;
+                    long long nPosition = distance (conf.first.begin (), it);
+                    std::cout << conf.second.at(nPosition)<<'\n';
                 }else{
-                    std::cout << "Not found!" <<std::endl;
+                    std::cout << "Not found!\n";
             }
         }
     }
