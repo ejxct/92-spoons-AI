@@ -18,12 +18,13 @@ void sleepcp(unsigned milliseconds){
 #ifdef WIN32
     Sleep(milliseconds);
 #else
-    usleep(milliseconds * 1000);
+    usleep(milliseconds * 1000); //to convert from nanoseconds
 #endif // win32
 }
+//loading function
 void load(/*int size*/){
     float progress = 0;
-    int time = 100;
+    unsigned time = 100;
     /*if (size<100){ Omited for later fixing
         time = size*0.5;
     }

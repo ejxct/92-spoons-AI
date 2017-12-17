@@ -1,6 +1,6 @@
 #include "files.h"
 #include <cstdlib>
-
+#include <fstream>
 int files::checksize(){
     std::fstream infile{filename, std::ios::ate | std::ios::binary};
     return infile.tellg();
@@ -26,6 +26,11 @@ void files::add(std::string edit){ //for experienced users
     filewrite.seekg(0,std::ios::end);
     filewrite << edit <<'\n';
     filewrite.close();
+}
+void files::operator+=(std::string add) {
+    std::fstream *pfile;
+    pfile = &file;
+    *pfile << add;
 }
 void files::keepline (std::string edit){
     std::fstream filewrite;
