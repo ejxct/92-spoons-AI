@@ -54,7 +54,6 @@ void files::read(){
     }
     if (first.at(0)!="92spoons AI header"){
         std::cout<<"Oh no! A file was loaded that does not have a correct header. Make sure you loaded a 92ai file, and that you didn't make a typo on the header.\n";
-        //cout<<"|"<<header<<"|";
         exit(1);
     }
 }
@@ -78,6 +77,10 @@ void files::load(std::string loadname){
     file2.filename=loadname;
     std::string line;
     std::string header;
+    std::vector<std::string> *pfirst;
+    pfirst = &first;
+    std::vector<std::string> *psecond;
+    psecond = &second;
     getline(file2.file,header);
     if (header!="92spoons AI header"){
         std::cout<<"Oh no! A file was loaded that does not have a correct header. Make sure you loaded a 92ai file, and that you didn't make a typo on the header.\n";
@@ -88,8 +91,8 @@ void files::load(std::string loadname){
         std::string one;
         std::string two;
         getline(split,one,':');
-        first.push_back(one);
+        pfirst->push_back(one);
         getline(split,two);
-        second.push_back(two);
+        psecond->push_back(two);
     }
 }

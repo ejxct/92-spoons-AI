@@ -22,9 +22,9 @@ void sleepcp(unsigned milliseconds){
 #endif // win32
 }
 void load(/*int size*/){
-    float progress = -0.01;
+    float progress = 0;
     int time = 100;
-    /*if (size<100){
+    /*if (size<100){ Omited for later fixing
         time = size*0.5;
     }
     if (size<1000&&size>100){
@@ -33,8 +33,7 @@ void load(/*int size*/){
     if (size>1000){
         time = size*0.01;
     }*/
-    while (progress < 1.0) {
-        progress += 0.01;
+    while (progress < 1.01) {
         unsigned barWidth = 70;
         std::cout << '[';
         int pos = barWidth * progress;
@@ -43,9 +42,10 @@ void load(/*int size*/){
             else if (i == pos) std::cout << '>';
             else std::cout << ' ';
         }
-        std::cout << "] " << int(progress * 100.0) << " %\r";
+        std::cout << "] " << unsigned(progress * 100.0) << " %\r";
         std::cout.flush();
         sleepcp(time);
+        progress += 0.01;
     }
     std::cout << std::endl;
 }
@@ -53,8 +53,8 @@ int main () {
     //load default conf
     files conf;
     conf.filename="default.92ai";
-    //conf.checksize();
-    std::thread loadbar (load/*,conf.size*/);
+    //std::cout<<conf.checksize()<<std::endl; Code to test checksize which doesn't work
+    std::thread loadbar (load/*,conf.checksize()*/); //omited code for future possible use
     conf.read();
     loadbar.join();
     std::cout << "Welcome to the 92 Spoons AI interface!\nIf you need a tour around, say 'tour'.\n";
@@ -72,8 +72,7 @@ int main () {
                     std::cout<<"What file shall I load?\n";
                     std::string file2load;
                     std::cin>>file2load;
-                    files file2;
-                    file2.filename=file2load;
+                    conf.load(file2load);
                 }else{
                     if (q=="import"){
                         std::cout<<"What file shall I import?\n";
