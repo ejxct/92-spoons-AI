@@ -15,8 +15,8 @@ public:
     std::fstream file;
     std::string filename;
     void operator+=(std::string add);
-    void add(std::string edit);
-    void keepline(std::string edit);
+    [[deprecated("Use += instead")]] void add(std::string edit);
+    [[deprecated("Use += instead")]] void keepline(std::string edit);
     void fileopen();
     void read();
     void close();
