@@ -83,13 +83,13 @@ int main () {
                         file2.open(file2load);
                         std::string line;
                         while(std::getline(file2,line)){
-                            conf.add(line);
+                            conf+=(line+'\n');
                         }
                     }else{
                         if (q=="write"){
                                 std::string edit;
                                 std::getline(std::cin,edit);
-                                conf.add(edit);
+                                conf+=(edit+'\n');
                         }else{
                             if (q=="tour"){
                                 std::cout<<"Hi!\nYou can type something and this AI will respond!\nIf you want to make a new command, type write.\nThen type what you expect a user to type, like llama.\nThen, type a colon.\nFinally, tell me what I should say to respond.\nFor example, llama:No, llama, no!\n";
@@ -101,7 +101,7 @@ int main () {
                                     long long nPosition = distance (conf.first.begin (), it);
                                     std::cout << conf.second.at(nPosition)<<'\n';
                                 }else{
-                                    std::cout << "Not found!\n";
+                                    std::cerr << "Not found!\n";
                                 }
                             }
                         }
