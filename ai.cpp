@@ -100,8 +100,11 @@ int main () {
                                     long long nPosition = distance (conf.first.begin (), it);
                                     std::cout << conf.second.at(nPosition)<<'\n';
                                 }else{
+                                    int score;
                                     for (unsigned i=0; i<conf.first.size(); i++){
-                                        if (q.compare(conf.first.at(i)) > -3 && q.compare(conf.first.at(i)) < 3){
+                                        score = q.compare(conf.first.at(i)); //TODO: need to write own compare function 
+                                        std::cout << score << '\n';
+                                        if (score > -3 && score < 3){
                                             std::cout << conf.second.at(i) << '\n';
                                             i += conf.first.size();
                                         }
