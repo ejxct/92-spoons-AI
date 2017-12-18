@@ -97,10 +97,15 @@ int main () {
                                 std::vector<std::string>::iterator it;
                                 it = find (conf.first.begin(), conf.first.end(), q);
                                 if (it != conf.first.end()){
-                                    //TODO: Fix this conversion error
                                     long long nPosition = distance (conf.first.begin (), it);
                                     std::cout << conf.second.at(nPosition)<<'\n';
                                 }else{
+                                    for (unsigned i=0; i<conf.first.size(); i++){
+                                        if (q.compare(conf.first.at(i)) > -3 && q.compare(conf.first.at(i)) < 3){
+                                            std::cout << conf.second.at(i) << '\n';
+                                            i += conf.first.size();
+                                        }
+                                    }
                                     std::cerr << "Not found!\n";
                                 }
                             }
