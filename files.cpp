@@ -1,25 +1,30 @@
 #include "files.h"
 #include <cstdlib>
 #include <fstream>
+//checks size of file. does not work
 int files::checksize(){
     std::fstream infile{filename, std::ios::ate | std::ios::binary};
     return infile.tellg();
 }
+//moves iterator to the start
 void files::start(){
     std::fstream *pfile;
     pfile = &file;
     pfile->seekg (0, std::ios::beg);
 }
+//moves iterator to the end
 void files::end(){
     std::fstream *pfile;
     pfile = &file;
     pfile->seekg (0, std::ios::end);
 }
+//opens file
 void files::fileopen(){
     std::fstream *pfile;
     pfile = &file;
     pfile->open(filename);
 }
+//adds line in file
 void files::add(std::string edit){ //for experienced users
     std::fstream filewrite;
     filewrite.open(filename);
@@ -27,17 +32,20 @@ void files::add(std::string edit){ //for experienced users
     filewrite << edit <<'\n';
     filewrite.close();
 }
+//adds text to file
 void files::operator+=(std::string add) {
     std::fstream *pfile;
     pfile = &file;
     *pfile << add;
 }
+//adds text to file
 void files::keepline (std::string edit){
     std::fstream filewrite;
     filewrite.open(filename);
     filewrite << edit;
     filewrite.close();
 }
+//reads file and puts it in vectors
 void files::read(){
     files::fileopen();
     std::fstream *pfile;
@@ -62,11 +70,13 @@ void files::read(){
         exit(1);
     }
 }
+//closes file. allows for confirmed saves
 void files::close(){
     std::fstream *pfile;
     pfile = &file;
     pfile->close();
 }
+//reloads file
 void files::reload(){
     std::vector<std::string> *pfirst;
     pfirst = &first;
@@ -77,6 +87,7 @@ void files::reload(){
     psecond->clear();
     files::read();
 }
+//loads other file
 void files::load(std::string loadname){
     files file2;
     file2.filename=loadname;
