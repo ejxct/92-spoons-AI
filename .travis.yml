@@ -9,7 +9,7 @@
             - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install clang; fi
 
   script:
-            clang++ -std=c++11 ai.cpp -o ai
+            clang++ -std=c++11 ai.cpp files.cpp -o ai
   os: 
      - osx
      #- linux todo: fix later
