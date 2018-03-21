@@ -48,3 +48,17 @@ test
 \.DS_Store
 
 gcc
+
+*.gcda
+
+*.gcno
+
+example-html\.\._files\.h\.html
+
+example-html\.ai\.cpp\.html
+
+example-html\.files\.cpp\.html
+
+example-html\.html
+
+*.plist
