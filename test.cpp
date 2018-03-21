@@ -18,52 +18,51 @@ bool debug = false;
 #else
 bool debug = true;
 #endif
-using namespace std;
 int main(){
     files test;
     test.filename="default.92ai";
     if(test.filename!="default.92ai"){
         if(debug){
-            cout<<"Var storage test FAILED! Here is what the var was instead:"<<test.filename<<endl;
+            std::cout<<"Var storage test FAILED! Here is what the var was instead:"<<test.filename<<'\n';
         }
         return -1;
     }
     if(debug){
-        cout<<"Var storage test passed!"<<endl;
+        std::cout<<"Var storage test passed!\n";
     }
     test.fileopen();
     if(test.file.bad()){
-        cout<<"File opening test FAILED!"<<endl;
+        std::cout<<"File opening test FAILED!\n";
         return -1;
     }
     test.close();
     if(debug){
-        cout<<"File opening test passed!"<<endl;
+        std::cout<<"File opening test passed!\n";
     }
     //add read debug
     test.fileopen();
-    string testread;
-    getline(test.file,testread);
+    std::string testread;
+    std::getline(test.file,testread);
     if (testread!="92spoons AI header"){
-        cout<<"File reading test FAILED!"<<endl;
+        std::cout<<"File reading test FAILED!\n";
         return -1;
     }
-    cout<<"File reading test passed!"<<endl;
+    std::cout<<"File reading test passed!\n";
     srand(time(NULL));
-    string name = "test"+to_string(rand());
+    std::string name = "test"+std::to_string(rand());
     test+=((name+":test\n").c_str());
     test.close();
     test.read();
-    vector<string>::iterator it;
+    std::vector<std::string>::iterator it;
     it = find (test.first.begin(), test.first.end(), name);
     if (it == test.first.end()){
-        cout<<"File writing test FAILED!"<<endl;
+        std::cout<<"File writing test FAILED!\n";
         return -1;
     }else{
         //TODO: Fix this conversion error
         long nPosition = distance (test.first.begin(), it);
         if (debug){
-            cout << "File writing test passed!"<<endl;
+            std::cout << "File writing test passed!\n";
         }
     }
 }
