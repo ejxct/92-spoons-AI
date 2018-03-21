@@ -10,6 +10,8 @@
 
   script:
             clang++ -std=c++11 ai.cpp files.cpp -o ai
+            clang++ -std=c++11 test.cpp files.cpp -o ai
+            ./test
   os: 
      - osx
      #- linux todo: fix later
