@@ -3,7 +3,7 @@
 #include <fstream>
 //checks size of file. does not work
 int files::checksize(){
-    std::fstream infile{filename, std::ios::ate | std::ios::binary};
+    std::fstream infile{name, std::ios::ate | std::ios::binary};
     return infile.tellg();
 }
 //moves iterator to the start
@@ -19,7 +19,14 @@ void files::end(){
     pfile->seekg (0, std::ios::end);
 }
 //opens file
-void files::fileopen(){
+void files::fileopen(std::string filename){
+    if (name==""){
+        if (filename==""){
+            name = filename;
+        }else{
+            std::cerr<<"0 arguments found, 1 expected.";
+        }
+    }
     std::fstream *pfile;
     pfile = &file;
     pfile->open(filename);
@@ -27,7 +34,6 @@ void files::fileopen(){
 //adds line in file
 void files::add(std::string edit){ //for experienced users
     std::fstream filewrite;
-    filewrite.open(filename);
     filewrite.seekg(0,std::ios::end);
     filewrite << edit <<'\n';
     filewrite.close();
@@ -41,7 +47,7 @@ void files::operator+=(std::string add) {
 //adds text to file
 void files::keepline (std::string edit){
     std::fstream filewrite;
-    filewrite.open(filename);
+    filewrite.open(name);
     filewrite << edit;
     filewrite.close();
 }
@@ -90,7 +96,8 @@ void files::reload(){
 //loads other file
 void files::load(std::string loadname){
     files file2;
-    file2.filename=loadname;
+    file2.fileopen(loadname);
+    file2.read();
     std::string line;
     std::string header;
     std::vector<std::string> *pfirst;

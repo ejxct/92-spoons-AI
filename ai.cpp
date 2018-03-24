@@ -53,9 +53,9 @@ void load(/*int size*/){
 int main () {
     //load default conf
     files conf;
-    conf.filename="default.92ai";
     //std::cout<<conf.checksize()<<std::endl; Code to test checksize which doesn't work
     std::thread loadbar (load/*,conf.checksize()*/); //omited code for future possible use
+    conf.fileopen("default.92ai");
     conf.read();
     loadbar.join();
     std::cout << "Welcome to the 92 Spoons AI interface!\nIf you need a tour around, say 'tour'.\n";

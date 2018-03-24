@@ -8,16 +8,16 @@
 
 class files{
     std::string edit;
+    std::string name;
 public:
     int size;
     std::vector<std::string> first;
     std::vector<std::string> second;
     std::fstream file;
-    std::string filename;
     void operator+=(std::string add);
     [[deprecated("Use += instead")]] void add(std::string edit);
     [[deprecated("Use += instead")]] void keepline(std::string edit);
-    void fileopen();
+    void fileopen(std::string filename = " ");
     void read();
     void close();
     void reload();
